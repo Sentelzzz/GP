@@ -14,4 +14,8 @@ public class LoginPageService {
                 .clickLoginButton();
         return new HomePage();
     }
+
+    public String getTextErrorMessage() {
+        return loginPage.getTextErrorMessage();
+    }
 }

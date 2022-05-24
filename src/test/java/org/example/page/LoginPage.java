@@ -19,6 +19,14 @@ public class LoginPage extends BasePage{
     @FindBy(xpath = "//input[@name='Login']")
     private WebElement loginButtonInput;
 
+    @FindBy(xpath = "//div[@id='error']")
+    private WebElement errorMessageDiv;
+
+    public String getTextErrorMessage() {
+        logger.atInfo().log("Get text of error message");
+        return errorMessageDiv.getText();
+    }
+
     public LoginPage openPage(String url) {
         driver.get(url);
         logger.atInfo().log("Take url of start page to driver");
