@@ -13,6 +13,11 @@ public class AccountPageService extends LoginPageService {
             .webSite("http://tms-auto.tilda.ws/qa12-onl")
             .build();
 
+    Account incorrectAccount = Account.builder().account("")
+            .industry("Education")
+            .webSite("http://tms-auto.tilda.ws/qa12-onl")
+            .build();
+
     public String getAccountName() {
         return account.getAccount();
     }
@@ -45,8 +50,9 @@ public class AccountPageService extends LoginPageService {
     public void createIncorrectAccount() {
         login(USERNAME, PASSWORD, LOG_IN_URL).clickAccountButton();
         accountPage.clickCreateNewAccountButton()
-                .fillWebSiteField(account)
-                .choseIndustryType(account)
+                .fillAccountField(incorrectAccount)
+                .fillWebSiteField(incorrectAccount)
+                .choseIndustryType(incorrectAccount)
                 .clickSaveButton();
     }
 }

@@ -72,7 +72,7 @@ public class AccountPage extends BasePage{
     }
 
     public AccountPage choseDeleteOptionDropDown() {
-        optionsDropDownAccountDiv.click();
+        new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions.visibilityOf(optionsDropDownAccountDiv)).click();
         return this;
     }
 
