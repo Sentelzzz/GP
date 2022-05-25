@@ -17,7 +17,7 @@ public class LoginTest extends BaseTest{
         loginPageService = new LoginPageService();
     }
 
-    @Test
+    @Test(description = "Login with correct user info")
     public void loginTest() {
         HomePage homePage = loginPageService.login(USERNAME, PASSWORD, LOG_IN_URL);
         String actualNameHomePage = homePage.getNameHomePage();
@@ -25,7 +25,7 @@ public class LoginTest extends BaseTest{
         Assert.assertEquals(actualNameHomePage, expectedNameHomePage, "You aren't on the home page!");
     }
 
-    @Test
+    @Test(description = "Login with incorrect user info")
     public void loginWithIncorrectInformationTest() {
         loginPageService.login(USERNAME, INCORRECTPASSWORD, LOG_IN_URL);
         String actualErrorMessage = loginPageService.getTextErrorMessage();
