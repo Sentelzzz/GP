@@ -7,7 +7,7 @@ import lombok.Data;
 @Builder
 public class Account {
 
-    private String account;
+    private String accountName;
     private String webSite;
     private String industry;
 }

@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
-<suite name="Smoke">
+<suite name="Smoke tests">
     <test name="Login Test">
         <classes>
-            <class name="org.example.tests.LoginTest" />
+            <class name="org.example.tests.LoginTest"/>
         </classes>
     </test>
     <test name="Create new account test">
         <classes>
-            <class name="org.example.tests.CreateNewAccountTest" />
+            <class name="org.example.tests.CreateNewAccountTest"/>
+        </classes>
+    </test>
+    <test name="Create new contact test">
+        <classes>
+            <class name="org.example.tests.CreateNewContactTest" />
         </classes>
     </test>
 </suite>

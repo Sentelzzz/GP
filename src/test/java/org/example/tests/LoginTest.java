@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 
 import static org.example.utils.StringConstants.*;
 
-public class LoginTest extends BaseTest{
+public class LoginTest extends BaseTest {
 
     private LoginPageService loginPageService;
 

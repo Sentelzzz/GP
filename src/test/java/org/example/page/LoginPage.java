@@ -5,7 +5,7 @@ import org.openqa.selenium.support.FindBy;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
-public class LoginPage extends BasePage{
+public class LoginPage extends BasePage {
 
     private static final Logger logger = LogManager.getLogger(LoginPage.class);
 

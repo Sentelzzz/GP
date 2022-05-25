@@ -1,13 +1,13 @@
 package org.example.tests;
 
 import org.example.driver.DriverSingleton;
+import org.example.service.AccountPageService;
+import org.example.service.ContactPageService;
 import org.example.utils.TestListener;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.*;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
-import org.testng.annotations.Listeners;
 
 @Listeners(TestListener.class)
 public class BaseTest {
@@ -24,6 +24,15 @@ public class BaseTest {
     @AfterTest
     public void closeBrowser() {
         logger.atInfo().log("Close driver");
+        DriverSingleton.getInstance().closeDriver();
+    }
+
+    @AfterSuite(description = "Delete created accounts and contacts")
+    public void deleteNewAccount() {
+        AccountPageService accountPageService = new AccountPageService();
+        accountPageService.deleteNewAccount();
+        ContactPageService contactPageService = new ContactPageService();
+        contactPageService.deleteNewContact();
         DriverSingleton.getInstance().closeDriver();
     }
 }

@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class HomePage extends BasePage{
+public class HomePage extends BasePage {
 
     private static final Logger logger = LogManager.getLogger(HomePage.class);
 
@@ -20,10 +20,20 @@ public class HomePage extends BasePage{
     @FindBy(xpath = "//a[@title='Accounts']//span")
     private WebElement accountPageButtonLink;
 
+    @FindBy(xpath = "//a[@title='Contacts']//span")
+    private WebElement contactPageButtonLink;
+
+    public void clickContactPageButton() {
+        logger.atInfo().log("Go to the contacts page");
+        new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions.visibilityOf(contactPageButtonLink));
+        JavascriptExecutor executor = (JavascriptExecutor) driver;
+        executor.executeScript("arguments[0].click();", contactPageButtonLink);
+    }
+
     public void clickAccountButton() {
-        logger.atInfo().log("Go to the account page");
+        logger.atInfo().log("Go to the accounts page");
         new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions.visibilityOf(accountPageButtonLink));
-        JavascriptExecutor executor = (JavascriptExecutor)driver;
+        JavascriptExecutor executor = (JavascriptExecutor) driver;
         executor.executeScript("arguments[0].click();", accountPageButtonLink);
     }
 

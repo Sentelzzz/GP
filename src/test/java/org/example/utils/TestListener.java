@@ -12,7 +12,7 @@ import org.testng.ITestResult;
 
 import java.util.concurrent.TimeUnit;
 
-public class TestListener extends BasePage implements ITestListener{
+public class TestListener extends BasePage implements ITestListener {
 
     public void onTestStart(ITestResult iTestResult) {
         System.out.println((String.format("======================================== STARTING TEST %s ========================================", iTestResult.getName())));
@@ -39,13 +39,13 @@ public class TestListener extends BasePage implements ITestListener{
         ITestContext context = iTestResult.getTestContext();
         try {
             driver = DriverSingleton.getInstance().getDriver();
-            if(driver != null) {
-                return ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
+            if (driver != null) {
+                return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
             } else {
-                return new byte[] {};
+                return new byte[]{};
             }
         } catch (NoSuchSessionException | IllegalStateException ex) {
-            return new byte[] {};
+            return new byte[]{};
         }
     }
 

@@ -17,7 +17,7 @@ import static org.example.utils.StringConstants.*;
 
 public class AccountPage extends BasePage{
 
-    private static final Logger logger = LogManager.getLogger(HomePage.class);
+    private static final Logger logger = LogManager.getLogger(AccountPage.class);
 
     @FindBy(xpath = "//div[@title='New']")
     private WebElement createNewAccountButtonDiv;
@@ -55,7 +55,7 @@ public class AccountPage extends BasePage{
         new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions.visibilityOf(deleteButton)).click();
     }
 
-    public AccountPage clickAccount() {
+    public AccountPage openAccountPage() {
         logger.atInfo().log("Open created account");
         new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions.visibilityOf(accountLink));
         JavascriptExecutor executor = (JavascriptExecutor)driver;
@@ -95,14 +95,14 @@ public class AccountPage extends BasePage{
     }
 
     public AccountPage fillAccountField(Account account) {
-        logger.atInfo().log("Input new account name");
+        logger.atInfo().log("Fill out new account name");
         new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions
-                .elementToBeClickable(accountNameFieldSpan)).sendKeys(account.getAccount());
+                .elementToBeClickable(accountNameFieldSpan)).sendKeys(account.getAccountName());
         return this;
     }
 
     public AccountPage fillWebSiteField(Account account) {
-        logger.atInfo().log("Input new account webSite");
+        logger.atInfo().log("Fill out new account webSite");
         new InputField(WEB_SITE_FIELD).writeText(account.getWebSite());
         return this;
     }

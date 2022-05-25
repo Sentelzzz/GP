@@ -5,7 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class CreateNewAccountTest extends BaseTest{
+public class CreateNewAccountTest extends BaseTest {
 
     private AccountPageService accountPageService;
 
@@ -14,7 +14,7 @@ public class CreateNewAccountTest extends BaseTest{
         accountPageService = new AccountPageService();
     }
 
-    @Test (description = "create new Account", priority = 0)
+    @Test(description = "Create new Account, fill all necessary fields")
     public void createNewAccountTest() {
         accountPageService.createNewAccount();
         String expectedNameNewAccount = accountPageService.getAccountName();
@@ -22,12 +22,7 @@ public class CreateNewAccountTest extends BaseTest{
         Assert.assertEquals(actualNameNewAccount, expectedNameNewAccount, "You didn't create new account!");
     }
 
-    @Test (description = "delete account after creating", dependsOnMethods = "createNewAccountTest", priority = 1)
-    public void deleteNewAccount() {
-        accountPageService.deleteNewAccount();
-    }
-
-    @Test (description = "Creating account without account name", priority = 2)
+    @Test(description = "Creating account without account name")
     public void createIncorrectAccount() {
         accountPageService.createIncorrectAccount();
         String expectedErrorMessage = accountPageService.getTextErrorMessageCreatingNewAccount();
