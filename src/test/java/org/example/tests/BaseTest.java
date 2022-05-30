@@ -3,6 +3,7 @@ package org.example.tests;
 import org.example.driver.DriverSingleton;
 import org.example.service.AccountPageService;
 import org.example.service.ContactPageService;
+import org.example.service.LeadsPageService;
 import org.example.utils.TestListener;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
@@ -33,6 +34,8 @@ public class BaseTest {
         accountPageService.deleteNewAccount();
         ContactPageService contactPageService = new ContactPageService();
         contactPageService.deleteNewContact();
+        LeadsPageService leadsPageService = new LeadsPageService();
+        leadsPageService.deleteNewLead();
         DriverSingleton.getInstance().closeDriver();
     }
 }

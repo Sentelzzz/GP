@@ -15,7 +15,7 @@ public class CreateNewContactTest extends BaseTest {
     }
 
     @Test(description = "Create new contact, fill all necessary fields")
-    public void createNewContactTest() {
+    public void createNewContactTest() throws InterruptedException {
         contactPageService.createNewContact();
         String actualNewContact = contactPageService.getTextActualCreatedContact();
         String expectedNewContact = contactPageService.getFirstName() + " " + contactPageService.getLastName();

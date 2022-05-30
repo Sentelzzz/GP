@@ -16,4 +16,9 @@
             <class name="org.example.tests.CreateNewContactTest" />
         </classes>
     </test>
+    <test name="Create new lead">
+        <classes>
+            <class name="org.example.tests.CreateNewLeadTest"/>
+        </classes>
+    </test>
 </suite>

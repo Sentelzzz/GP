@@ -1,6 +1,5 @@
 package org.example.service;
 
-import org.example.models.Contact;
 import org.example.page.ContactPage;
 
 import static org.example.utils.StringConstants.*;
@@ -8,13 +7,6 @@ import static org.example.utils.StringConstants.*;
 public class ContactPageService extends LoginPageService {
 
     private ContactPage contactPage = new ContactPage();
-    private Contact contact = Contact.builder().firstName("Vadim")
-            .lastName("Mialik")
-            .build();
-
-    private Contact incorrectContact = Contact.builder().firstName("")
-            .lastName("")
-            .build();
 
     public String getErrorMessage() {
         return contactPage.getErrorMessage();
@@ -34,19 +26,16 @@ public class ContactPageService extends LoginPageService {
 
     public void deleteNewContact() {
         login(USERNAME, PASSWORD, LOG_IN_URL).clickContactPageButton();
-        contactPage.openContactPage()
-                .openDropDownContact()
-                .choseDeleteOptionDropDown()
-                .deleteAccount();
+        contactPage.deleteCreatedContact();
     }
 
-    public void createNewContact() {
+    public void createNewContact() throws InterruptedException {
         login(USERNAME, PASSWORD, LOG_IN_URL).clickContactPageButton();
         contactPage.clickCreateNewAccountButton()
                 .fillFirstNameField(contact)
                 .fillLastNameField(contact)
                 .fillAccountNameField(account)
-                .choseAccountForContact()
+                .choseAccount(account)
                 .clickSaveNewContactButton();
     }
 
@@ -56,7 +45,7 @@ public class ContactPageService extends LoginPageService {
                 .fillFirstNameField(incorrectContact)
                 .fillLastNameField(incorrectContact)
                 .fillAccountNameField(account)
-                .choseAccountForContact()
+                .choseAccount(account)
                 .clickSaveNewContactButton();
     }
 

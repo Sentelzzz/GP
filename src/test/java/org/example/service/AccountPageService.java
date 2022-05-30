@@ -31,10 +31,7 @@ public class AccountPageService extends LoginPageService {
 
     public void deleteNewAccount() {
         login(USERNAME, PASSWORD, LOG_IN_URL).clickAccountButton();
-        accountPage.openAccountPage()
-                .openDropDownAccount()
-                .choseDeleteOptionDropDown()
-                .deleteAccount();
+        accountPage.deleteCreatedAccount();
     }
 
     public void createIncorrectAccount() {

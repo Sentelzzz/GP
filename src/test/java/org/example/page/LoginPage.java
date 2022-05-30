@@ -12,11 +12,30 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//input[@name='username']")
     private WebElement usernameFieldInput;
 
+    public LoginPage fillUsernameField(String username) {
+        usernameFieldInput.clear();
+        usernameFieldInput.sendKeys(username);
+        logger.atInfo().log("Enter username information");
+        return this;
+    }
+
     @FindBy(xpath = "//input[@name='pw']")
     private WebElement passwordFieldInput;
 
+    public LoginPage fillPasswordField(String password) {
+        passwordFieldInput.clear();
+        passwordFieldInput.sendKeys(password);
+        logger.atInfo().log("Enter password information");
+        return this;
+    }
+
     @FindBy(xpath = "//input[@name='Login']")
     private WebElement loginButtonInput;
+
+    public void clickLoginButton() {
+        loginButtonInput.click();
+        logger.atInfo().log("Click on login button after filling username and password fields");
+    }
 
     @FindBy(xpath = "//div[@id='error']")
     private WebElement errorMessageDiv;
@@ -32,22 +51,4 @@ public class LoginPage extends BasePage {
         return this;
     }
 
-    public LoginPage fillUsernameField(String username) {
-        usernameFieldInput.clear();
-        usernameFieldInput.sendKeys(username);
-        logger.atInfo().log("Enter username information");
-        return this;
-    }
-
-    public LoginPage fillPasswordField(String password) {
-        passwordFieldInput.clear();
-        passwordFieldInput.sendKeys(password);
-        logger.atInfo().log("Enter password information");
-        return this;
-    }
-
-    public void clickLoginButton() {
-        loginButtonInput.click();
-        logger.atInfo().log("Click on login button after filling username and password fields");
-    }
 }

@@ -19,6 +19,6 @@ public class InputField extends BasePage {
 
     public void writeText(String text) {
         new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions
-                .visibilityOf(driver.findElement(By.xpath(String.format(INPUT_XPATH, label))))).sendKeys(text);
+                .visibilityOfElementLocated(By.xpath(String.format(INPUT_XPATH, label)))).sendKeys(text);
     }
 }

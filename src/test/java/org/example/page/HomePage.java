@@ -17,8 +17,21 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//span[@title='Sales']")
     private WebElement nameHomePageSpan;
 
+    public String getNameHomePage() {
+        new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions.visibilityOf(nameHomePageSpan));
+        logger.atInfo().log("Get name of home page");
+        return nameHomePageSpan.getText();
+    }
+
     @FindBy(xpath = "//a[@title='Accounts']//span")
     private WebElement accountPageButtonLink;
+
+    public void clickAccountButton() {
+        logger.atInfo().log("Go to the accounts page");
+        new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions.visibilityOf(accountPageButtonLink));
+        JavascriptExecutor executor = (JavascriptExecutor) driver;
+        executor.executeScript("arguments[0].click();", accountPageButtonLink);
+    }
 
     @FindBy(xpath = "//a[@title='Contacts']//span")
     private WebElement contactPageButtonLink;
@@ -30,16 +43,14 @@ public class HomePage extends BasePage {
         executor.executeScript("arguments[0].click();", contactPageButtonLink);
     }
 
-    public void clickAccountButton() {
-        logger.atInfo().log("Go to the accounts page");
-        new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions.visibilityOf(accountPageButtonLink));
+    @FindBy(xpath = "//a[@title='Leads']//span")
+    private WebElement leadsPageButtonLink;
+
+    public void clickLeadsPageButton() {
+        logger.atInfo().log("Go to the leads page");
+        new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions.visibilityOf(leadsPageButtonLink));
         JavascriptExecutor executor = (JavascriptExecutor) driver;
-        executor.executeScript("arguments[0].click();", accountPageButtonLink);
+        executor.executeScript("arguments[0].click();", leadsPageButtonLink);
     }
 
-    public String getNameHomePage() {
-        new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions.visibilityOf(nameHomePageSpan));
-        logger.atInfo().log("Get name of home page");
-        return nameHomePageSpan.getText();
-    }
 }
