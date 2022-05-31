@@ -2,7 +2,7 @@ package org.example.page;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.JavascriptExecutor;
+import org.example.elements.Pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -23,34 +23,9 @@ public class HomePage extends BasePage {
         return nameHomePageSpan.getText();
     }
 
-    @FindBy(xpath = "//a[@title='Accounts']//span")
-    private WebElement accountPageButtonLink;
-
-    public void clickAccountButton() {
-        logger.atInfo().log("Go to the accounts page");
-        new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions.visibilityOf(accountPageButtonLink));
-        JavascriptExecutor executor = (JavascriptExecutor) driver;
-        executor.executeScript("arguments[0].click();", accountPageButtonLink);
-    }
-
-    @FindBy(xpath = "//a[@title='Contacts']//span")
-    private WebElement contactPageButtonLink;
-
-    public void clickContactPageButton() {
-        logger.atInfo().log("Go to the contacts page");
-        new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions.visibilityOf(contactPageButtonLink));
-        JavascriptExecutor executor = (JavascriptExecutor) driver;
-        executor.executeScript("arguments[0].click();", contactPageButtonLink);
-    }
-
-    @FindBy(xpath = "//a[@title='Leads']//span")
-    private WebElement leadsPageButtonLink;
-
-    public void clickLeadsPageButton() {
-        logger.atInfo().log("Go to the leads page");
-        new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions.visibilityOf(leadsPageButtonLink));
-        JavascriptExecutor executor = (JavascriptExecutor) driver;
-        executor.executeScript("arguments[0].click();", leadsPageButtonLink);
+    public void openNextPage(String page) {
+        logger.atInfo().log("Open " + page + " page");
+        new Pages(page).openNextPage();
     }
 
 }

@@ -25,12 +25,12 @@ public class ContactPageService extends LoginPageService {
     }
 
     public void deleteNewContact() {
-        login(USERNAME, PASSWORD, LOG_IN_URL).clickContactPageButton();
+        login(USERNAME, PASSWORD, LOG_IN_URL).openNextPage(CONTACTS_PAGE);
         contactPage.deleteCreatedContact();
     }
 
     public void createNewContact() throws InterruptedException {
-        login(USERNAME, PASSWORD, LOG_IN_URL).clickContactPageButton();
+        login(USERNAME, PASSWORD, LOG_IN_URL).openNextPage(CONTACTS_PAGE);
         contactPage.clickCreateNewAccountButton()
                 .fillFirstNameField(contact)
                 .fillLastNameField(contact)
@@ -40,7 +40,7 @@ public class ContactPageService extends LoginPageService {
     }
 
     public void createNewIncorrectContact() {
-        login(USERNAME, PASSWORD, LOG_IN_URL).clickContactPageButton();
+        login(USERNAME, PASSWORD, LOG_IN_URL).openNextPage(CONTACTS_PAGE);
         contactPage.clickCreateNewAccountButton()
                 .fillFirstNameField(incorrectContact)
                 .fillLastNameField(incorrectContact)

@@ -21,4 +21,9 @@
             <class name="org.example.tests.CreateNewLeadTest"/>
         </classes>
     </test>
+    <test name="Create new case">
+        <classes>
+            <class name="org.example.tests.CreateNewCaseTest"/>
+        </classes>
+    </test>
 </suite>

@@ -3,6 +3,7 @@ package org.example.driver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.opera.OperaDriver;
 
@@ -13,7 +14,7 @@ public class WebDriverFactory {
 
     public static WebDriver getWebDriver() {
         WebDriver driver;
-        switch (System.getProperty("browser")) {
+        switch (System.getProperty("browser", "chrome")) {
             case "firefox": {
                 WebDriverManager.firefoxdriver().setup();
                 driver = new FirefoxDriver();
@@ -25,8 +26,10 @@ public class WebDriverFactory {
                 break;
             }
             default: {
+                ChromeOptions options = new ChromeOptions();
+                options.addArguments("--disable-notifications");
                 WebDriverManager.chromedriver().setup();
-                driver = new ChromeDriver();
+                driver = new ChromeDriver(options);
             }
         }
         driver.manage().window().maximize();

@@ -14,7 +14,7 @@ public class CreateNewContactTest extends BaseTest {
         contactPageService = new ContactPageService();
     }
 
-    @Test(description = "Create new contact, fill all necessary fields")
+    @Test(description = "Create new contact, fill out all necessary fields")
     public void createNewContactTest() throws InterruptedException {
         contactPageService.createNewContact();
         String actualNewContact = contactPageService.getTextActualCreatedContact();
@@ -22,7 +22,7 @@ public class CreateNewContactTest extends BaseTest {
         Assert.assertEquals(actualNewContact, expectedNewContact, "New contact wasn't created!");
     }
 
-    @Test(description = "Create new contact, doesn't fill all necessary fields")
+    @Test(description = "Create new contact, doesn't fill out all necessary fields")
     public void createNewIncorrectContactTest() {
         contactPageService.createNewIncorrectContact();
         String actualErrorMessage = contactPageService.getErrorMessage();

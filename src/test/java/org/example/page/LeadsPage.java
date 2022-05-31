@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.example.elements.DeleteCreatedObjects;
 import org.example.elements.DropDown;
+import org.example.elements.NewObjectButton;
 import org.example.models.Leads;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -16,17 +17,6 @@ import java.time.Duration;
 public class LeadsPage extends BasePage{
 
     private static final Logger logger = LogManager.getLogger(LeadsPage.class);
-
-    @FindBy(xpath = "//div[@title='New']")
-    private WebElement buttonCreateNewLeadDiv;
-
-    public LeadsPage clickCreateNewLeadButton() {
-        logger.atInfo().log("Click on create new lead button");
-        new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions.visibilityOf(buttonCreateNewLeadDiv));
-        JavascriptExecutor executor = (JavascriptExecutor) driver;
-        executor.executeScript("arguments[0].click();", buttonCreateNewLeadDiv);
-        return this;
-    }
 
     @FindBy(xpath = "//label[contains(text(), 'Last Name')]//following-sibling::div//input[@type='text']")
     private WebElement lastNameInputLabel;
@@ -85,7 +75,14 @@ public class LeadsPage extends BasePage{
     }
 
     public void deleteCreatedLead() {
+        logger.atInfo().log("Delete created object");
         new DeleteCreatedObjects().deleteObject();
+    }
+
+    public LeadsPage clickCreateNewLeadButton() {
+        logger.atInfo().log("Click on create new lead button");
+        new NewObjectButton().createNewObject();
+        return this;
     }
 
 }

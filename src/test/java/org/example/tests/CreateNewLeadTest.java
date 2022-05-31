@@ -14,7 +14,7 @@ public class CreateNewLeadTest extends BaseTest {
         leadsPageService = new LeadsPageService();
     }
 
-    @Test
+    @Test(description = "Create new lead, fill out all necessary fields")
     public void createNewCorrectLeadTest() {
         leadsPageService.createNewLead();
         String expectedNameOfLead = leadsPageService.getTextLeadName();
@@ -22,7 +22,7 @@ public class CreateNewLeadTest extends BaseTest {
         Assert.assertEquals(actualNameOfLead, expectedNameOfLead, "Name of new lead doesn't correct!");
     }
 
-    @Test
+    @Test(description = "Create new lead, doesn't fill out all necessary fields")
     public void createNewIncorrectLeadTest() {
         leadsPageService.createNewIncorrectLead();
         String actualErrorMessage = leadsPageService.getErrorMessage();

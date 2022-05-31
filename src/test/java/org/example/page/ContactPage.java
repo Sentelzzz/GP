@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.example.elements.AccountName;
 import org.example.elements.DeleteCreatedObjects;
+import org.example.elements.NewObjectButton;
 import org.example.models.Account;
 import org.example.models.Contact;
 import org.openqa.selenium.JavascriptExecutor;
@@ -17,17 +18,6 @@ import java.time.Duration;
 public class ContactPage extends BasePage {
 
     private static final Logger logger = LogManager.getLogger(ContactPage.class);
-
-    @FindBy(xpath = "//div[contains(text(), 'New')]")
-    private WebElement createNewContactButtonDiv;
-
-    public ContactPage clickCreateNewAccountButton() {
-        logger.atInfo().log("Click on create new account button");
-        new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions.visibilityOf(createNewContactButtonDiv));
-        JavascriptExecutor executor = (JavascriptExecutor) driver;
-        executor.executeScript("arguments[0].click();", createNewContactButtonDiv);
-        return this;
-    }
 
     @FindBy(xpath = "//input[@name='lastName']")
     private WebElement lastNameInput;
@@ -82,6 +72,12 @@ public class ContactPage extends BasePage {
 
     public ContactPage choseAccount(Account account) {
         new AccountName(account.getAccountName()).choseAccount();
+        return this;
+    }
+
+    public ContactPage clickCreateNewAccountButton() {
+        logger.atInfo().log("Click on create new account button");
+        new NewObjectButton().createNewObject();
         return this;
     }
 

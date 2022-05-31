@@ -5,8 +5,8 @@ import org.apache.logging.log4j.Logger;
 import org.example.elements.DeleteCreatedObjects;
 import org.example.elements.DropDown;
 import org.example.elements.InputField;
+import org.example.elements.NewObjectButton;
 import org.example.models.Account;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -19,17 +19,6 @@ import static org.example.utils.StringConstants.*;
 public class AccountPage extends BasePage{
 
     private static final Logger logger = LogManager.getLogger(AccountPage.class);
-
-    @FindBy(xpath = "//div[@title='New']")
-    private WebElement createNewAccountButtonDiv;
-
-    public AccountPage clickCreateNewAccountButton() {
-        logger.atInfo().log("Click on create new account button");
-        new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions.visibilityOf(createNewAccountButtonDiv));
-        JavascriptExecutor executor = (JavascriptExecutor)driver;
-        executor.executeScript("arguments[0].click();", createNewAccountButtonDiv);
-        return this;
-    }
 
     @FindBy(xpath = "//button[@title = 'Save']")
     private WebElement saveButton;
@@ -78,6 +67,12 @@ public class AccountPage extends BasePage{
 
     public void deleteCreatedAccount() {
         new DeleteCreatedObjects().deleteObject();
+    }
+
+    public AccountPage clickCreateNewAccountButton() {
+        logger.atInfo().log("Click on create new account button");
+        new NewObjectButton().createNewObject();
+        return this;
     }
 
 }

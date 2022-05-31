@@ -21,7 +21,7 @@ public class LeadsPageService extends LoginPageService{
     }
 
     public void createNewLead() {
-        login(USERNAME, PASSWORD, LOG_IN_URL).clickLeadsPageButton();
+        login(USERNAME, PASSWORD, LOG_IN_URL).openNextPage(LEADS_PAGE);
         leadsPage.clickCreateNewLeadButton()
                 .fillLastNameField(lead)
                 .fillCompanyField(lead)
@@ -30,7 +30,7 @@ public class LeadsPageService extends LoginPageService{
     }
 
     public void createNewIncorrectLead() {
-        login(USERNAME, PASSWORD, LOG_IN_URL).clickLeadsPageButton();
+        login(USERNAME, PASSWORD, LOG_IN_URL).openNextPage(LEADS_PAGE);
         leadsPage.clickCreateNewLeadButton()
                 .fillLastNameField(incorrectLead)
                 .fillCompanyField(incorrectLead)
@@ -39,7 +39,7 @@ public class LeadsPageService extends LoginPageService{
     }
 
     public void deleteNewLead() {
-        login(USERNAME, PASSWORD, LOG_IN_URL).clickLeadsPageButton();
+        login(USERNAME, PASSWORD, LOG_IN_URL).openNextPage(LEADS_PAGE);
         leadsPage.deleteCreatedLead();
     }
 

@@ -21,7 +21,7 @@ public class AccountPageService extends LoginPageService {
     }
 
     public void createNewAccount() {
-        login(USERNAME, PASSWORD, LOG_IN_URL).clickAccountButton();
+        login(USERNAME, PASSWORD, LOG_IN_URL).openNextPage(ACCOUNT_PAGE);
         accountPage.clickCreateNewAccountButton()
                 .fillAccountField(account)
                 .fillWebSiteField(account)
@@ -30,12 +30,12 @@ public class AccountPageService extends LoginPageService {
     }
 
     public void deleteNewAccount() {
-        login(USERNAME, PASSWORD, LOG_IN_URL).clickAccountButton();
+        login(USERNAME, PASSWORD, LOG_IN_URL).openNextPage(ACCOUNT_PAGE);
         accountPage.deleteCreatedAccount();
     }
 
     public void createIncorrectAccount() {
-        login(USERNAME, PASSWORD, LOG_IN_URL).clickAccountButton();
+        login(USERNAME, PASSWORD, LOG_IN_URL).openNextPage(ACCOUNT_PAGE);
         accountPage.clickCreateNewAccountButton()
                 .fillAccountField(incorrectAccount)
                 .fillWebSiteField(incorrectAccount)

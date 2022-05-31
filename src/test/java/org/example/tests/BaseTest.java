@@ -16,13 +16,13 @@ public class BaseTest {
     protected WebDriver driver;
     private static final Logger logger = LogManager.getLogger(BaseTest.class);
 
-    @BeforeTest(alwaysRun = true)
+    @BeforeClass(alwaysRun = true)
     public void setBrowser() {
         logger.atInfo().log("Open driver");
         driver = DriverSingleton.getInstance().getDriver();
     }
 
-    @AfterTest
+    @AfterClass
     public void closeBrowser() {
         logger.atInfo().log("Close driver");
         DriverSingleton.getInstance().closeDriver();
