@@ -2,10 +2,7 @@ package org.example.page;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.example.elements.CaseStatus;
-import org.example.elements.DeleteCreatedObjects;
-import org.example.elements.DropDown;
-import org.example.elements.NewObjectButton;
+import org.example.elements.*;
 import org.example.utils.Waters;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -20,13 +17,6 @@ import java.time.Duration;
 public class CasePage extends BasePage {
 
     private static final Logger logger = LogManager.getLogger(CasePage.class);
-
-    @FindBy(xpath = "//span[contains(text(), 'Save')]//parent::button[@title='Save']")
-    private WebElement saveButton;
-
-    public void saveNewCase() {
-        saveButton.click();
-    }
 
     @FindBy(xpath = "//a[contains(text(), 'Case Details')]")
     private WebElement casePageName;
@@ -88,4 +78,10 @@ public class CasePage extends BasePage {
         new DeleteCreatedObjects().openCreatedProject();
         return this;
     }
+
+    public void clickSaveButton() {
+        logger.atInfo().log("Save created case");
+        new SaveButtonForCreatedObjects().clickSaveButton();
+    }
+
 }

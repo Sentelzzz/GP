@@ -23,7 +23,7 @@ public class CasePageService extends LoginPageService{
                 .choseCaseOption(CASE_ORIGIN_OPTION)
                 .clickOnSelect(STATUS)
                 .choseCaseOption(STATUS_OPTION)
-                .saveNewCase();
+                .clickSaveButton();
     }
 
     public void createNewCase() {
@@ -31,7 +31,7 @@ public class CasePageService extends LoginPageService{
         casePage.clickCreateNewCaseButton()
                 .clickOnSelect(CASE_ORIGIN)
                 .choseCaseOption(CASE_ORIGIN_OPTION)
-                .saveNewCase();
+                .clickSaveButton();
     }
 
     public void changeCurrentCaseStatus() {

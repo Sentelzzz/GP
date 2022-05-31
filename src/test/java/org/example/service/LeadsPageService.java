@@ -26,7 +26,7 @@ public class LeadsPageService extends LoginPageService{
                 .fillLastNameField(lead)
                 .fillCompanyField(lead)
                 .choseLeadStatus(lead)
-                .clickOnSaveButton();
+                .clickSaveButton();
     }
 
     public void createNewIncorrectLead() {
@@ -35,7 +35,7 @@ public class LeadsPageService extends LoginPageService{
                 .fillLastNameField(incorrectLead)
                 .fillCompanyField(incorrectLead)
                 .choseLeadStatus(incorrectLead)
-                .clickOnSaveButton();
+                .clickSaveButton();
     }
 
     public void deleteNewLead() {

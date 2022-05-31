@@ -36,7 +36,7 @@ public class ContactPageService extends LoginPageService {
                 .fillLastNameField(contact)
                 .fillAccountNameField(account)
                 .choseAccount(account)
-                .clickSaveNewContactButton();
+                .clickSaveButton();
     }
 
     public void createNewIncorrectContact() {
@@ -46,7 +46,7 @@ public class ContactPageService extends LoginPageService {
                 .fillLastNameField(incorrectContact)
                 .fillAccountNameField(account)
                 .choseAccount(account)
-                .clickSaveNewContactButton();
+                .clickSaveButton();
     }
 
 }

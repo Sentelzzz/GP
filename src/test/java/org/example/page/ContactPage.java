@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 import org.example.elements.AccountName;
 import org.example.elements.DeleteCreatedObjects;
 import org.example.elements.NewObjectButton;
+import org.example.elements.SaveButtonForCreatedObjects;
 import org.example.models.Account;
 import org.example.models.Contact;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -48,14 +48,6 @@ public class ContactPage extends BasePage {
         return this;
     }
 
-    @FindBy(xpath = "//button[@name='SaveEdit']")
-    private WebElement saveNewContactButton;
-
-    public void clickSaveNewContactButton() {
-        logger.atInfo().log("Save new contact");
-        saveNewContactButton.click();
-    }
-
     @FindBy (xpath = "//div[contains(text(), 'Contact')]/parent::h1//div[contains(@class, 'testonly')]//span[contains(@class, 'custom')]")
     private WebElement nameNewContactSpan;
 
@@ -83,6 +75,11 @@ public class ContactPage extends BasePage {
 
     public void deleteCreatedContact() {
         new DeleteCreatedObjects().deleteObject();
+    }
+
+    public void clickSaveButton() {
+        logger.atInfo().log("Save created contact");
+        new SaveButtonForCreatedObjects().clickSaveLeadContactButton();
     }
 
     /*@FindBy(xpath = "//span[contains(text(), 'Account')]/ancestor::" +

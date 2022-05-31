@@ -22,7 +22,7 @@ public class BaseTest {
         driver = DriverSingleton.getInstance().getDriver();
     }
 
-    /*@AfterClass
+    @AfterClass
     public void closeBrowser() {
         logger.atInfo().log("Close driver");
         DriverSingleton.getInstance().closeDriver();
@@ -37,5 +37,5 @@ public class BaseTest {
         LeadsPageService leadsPageService = new LeadsPageService();
         leadsPageService.deleteNewLead();
         DriverSingleton.getInstance().closeDriver();
-    }*/
+    }
 }

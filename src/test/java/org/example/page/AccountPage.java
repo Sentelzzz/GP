@@ -2,10 +2,7 @@ package org.example.page;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.example.elements.DeleteCreatedObjects;
-import org.example.elements.DropDown;
-import org.example.elements.InputField;
-import org.example.elements.NewObjectButton;
+import org.example.elements.*;
 import org.example.models.Account;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -19,14 +16,6 @@ import static org.example.utils.StringConstants.*;
 public class AccountPage extends BasePage{
 
     private static final Logger logger = LogManager.getLogger(AccountPage.class);
-
-    @FindBy(xpath = "//button[@title = 'Save']")
-    private WebElement saveButton;
-
-    public void clickSaveButton() {
-        logger.atInfo().log("Save new account");
-        saveButton.click();
-    }
 
     @FindBy(xpath = "//span[contains(text(), 'Account Name')]/ancestor::div[contains(@class, 'uiInput')]//input")
     private WebElement accountNameFieldSpan;
@@ -73,6 +62,11 @@ public class AccountPage extends BasePage{
         logger.atInfo().log("Click on create new account button");
         new NewObjectButton().createNewObject();
         return this;
+    }
+
+    public void clickSaveButton() {
+        logger.atInfo().log("Save created account");
+        new SaveButtonForCreatedObjects().clickSaveButton();
     }
 
 }

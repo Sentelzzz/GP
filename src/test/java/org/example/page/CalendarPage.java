@@ -3,6 +3,7 @@ package org.example.page;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.example.elements.DropDown;
+import org.example.elements.SaveButtonForCreatedObjects;
 import org.example.utils.Waters;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -19,6 +20,7 @@ public class CalendarPage extends BasePage {
     private WebElement newEventButton;
 
     public CalendarPage clickButtonCreateNewEvent() {
+        logger.atInfo().log("Open window creating new event");
         Waters.waitElementToBeClickable(driver, newEventButton);
         return this;
     }
@@ -27,15 +29,9 @@ public class CalendarPage extends BasePage {
     private WebElement eventSubjectDiv;
 
     public CalendarPage clickSubjectField() {
+        logger.atInfo().log("Open subject field");
         Waters.waitElementToBeClickable(driver, eventSubjectDiv);
         return this;
-    }
-
-    @FindBy(xpath = "//span[contains(text(), 'Save')]//parent::button[@title='Save']")
-    private WebElement saveButton;
-
-    public void clickSaveButton() {
-        Waters.waitElementToBeClickable(driver, saveButton);
     }
 
     @FindBy(xpath = "//a[@class='subject-link']")
@@ -47,7 +43,13 @@ public class CalendarPage extends BasePage {
     }
 
     public CalendarPage chooseEventSubject(String subject) {
+        logger.atInfo().log("Choose event subject");
         new DropDown().selectEventSubject(subject);
         return this;
+    }
+
+    public void clickSaveButton() {
+        logger.atInfo().log("Save created event");
+        new SaveButtonForCreatedObjects().clickSaveButton();
     }
 }

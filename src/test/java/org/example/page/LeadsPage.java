@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.example.elements.DeleteCreatedObjects;
 import org.example.elements.DropDown;
 import org.example.elements.NewObjectButton;
+import org.example.elements.SaveButtonForCreatedObjects;
 import org.example.models.Leads;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -49,15 +50,6 @@ public class LeadsPage extends BasePage{
         return this;
     }
 
-    @FindBy(xpath = "//button[@name='SaveEdit']")
-    private WebElement saveButton;
-
-    public void clickOnSaveButton() {
-        logger.atInfo().log("Save new lead");
-        new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions.elementToBeClickable(saveButton));
-        saveButton.click();
-    }
-
     @FindBy(xpath = "//span[contains(text(), 'Name')]//parent::div//following-sibling::div//span//slot[@name='outputField']//lightning-formatted-name")
     private WebElement nameLeadPageSpan;
 
@@ -83,6 +75,11 @@ public class LeadsPage extends BasePage{
         logger.atInfo().log("Click on create new lead button");
         new NewObjectButton().createNewObject();
         return this;
+    }
+
+    public void clickSaveButton() {
+        logger.atInfo().log("Save created lead");
+        new SaveButtonForCreatedObjects().clickSaveLeadContactButton();
     }
 
 }
