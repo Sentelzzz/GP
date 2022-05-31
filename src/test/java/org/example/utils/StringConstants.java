@@ -19,6 +19,7 @@ public class StringConstants {
     public static final String ACCOUNT_PAGE = "Accounts";
     public static final String CONTACTS_PAGE = "Contacts";
     public static final String LEADS_PAGE = "Leads";
+    public static final String CALENDAR_PAGE = "Calendar";
 
     //cases dropdown name
     public static final String STATUS = "Status";
@@ -31,5 +32,12 @@ public class StringConstants {
     public static final String PENDING = "Pending";
     public static final String ESCALATED = "Escalated";
     public static final String CLOSED = "Closed";
+
+    //event subject
+    public static final String CALL = "Call";
+    public static final String EMAIL = "Email";
+    public static final String MEETING = "Meeting";
+    public static final String SEND_LETTER_QUOTE = "Send Letter/Quote";
+    public static final String OTHER = "Other";
 
 }

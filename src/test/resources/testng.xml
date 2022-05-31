@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 <suite name="Smoke tests">
-    <test name="Login Test">
+    <!--<test name="Login Test">
         <classes>
             <class name="org.example.tests.LoginTest"/>
         </classes>
@@ -24,6 +24,11 @@
     <test name="Create new case">
         <classes>
             <class name="org.example.tests.CreateNewCaseTest"/>
+        </classes>
+    </test>-->
+    <test name="Create new event">
+        <classes>
+            <class name="org.example.tests.CreateNewEventTest"/>
         </classes>
     </test>
 </suite>

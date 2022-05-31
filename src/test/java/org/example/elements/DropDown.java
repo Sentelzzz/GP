@@ -27,6 +27,8 @@ public class DropDown extends BasePage {
     private static final String SELECT_CASE_DROP_DOWN = "//span[contains(text(), '%s')]//parent::span[contains(@class, 'label')]//following-sibling::div/*//a[contains(text(), '--None--')]";
     private static final String SELECT_CASE_DROP_DOWN_OPTION = "//div[@role='menu']/*//a[contains(text(), '%s')]";
 
+    private static final String SELECT_EVENT_SUBJECT_OPTION = "//span[contains(text(), '%s')]//ancestor::lightning-base-combobox-item";
+
     public void selectOption(String option) {
         new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions
                 .visibilityOfElementLocated(By.xpath(String.format(DROP_DOWN_XPATH, label)))).click();
@@ -50,5 +52,10 @@ public class DropDown extends BasePage {
     public void selectCaseDropDownOption() {
         new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions
                 .elementToBeClickable(driver.findElement(By.xpath(String.format(SELECT_CASE_DROP_DOWN_OPTION, label))))).click();
+    }
+
+    public void selectEventSubject(String subject) {
+        new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions
+                .elementToBeClickable(driver.findElement(By.xpath(String.format(SELECT_EVENT_SUBJECT_OPTION, subject))))).click();
     }
 }
