@@ -8,12 +8,9 @@ import org.example.elements.NewObjectButton;
 import org.example.elements.SaveButtonForCreatedObjects;
 import org.example.models.Account;
 import org.example.models.Contact;
+import org.example.utils.Waiters;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 public class ContactPage extends BasePage {
 
@@ -22,25 +19,31 @@ public class ContactPage extends BasePage {
     @FindBy(xpath = "//input[@name='lastName']")
     private WebElement lastNameInput;
 
-    public ContactPage fillLastNameField(Contact contact) {
-        logger.atInfo().log("Fill out new contact first name");
-        new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions
-                .elementToBeClickable(lastNameInput)).sendKeys(contact.getLastName());
-        return this;
-    }
-
     @FindBy(xpath = "//input[@name='firstName']")
     private WebElement firstNameInput;
 
-    public ContactPage fillFirstNameField(Contact contact) {
+    @FindBy(xpath = "//label[contains(text(), 'Account Name')]/following-sibling::div//input")
+    private WebElement accountNameInput;
+
+    @FindBy (xpath = "//div[contains(text(), 'Contact')]/parent::h1//div[contains(@class, 'testonly')]//span[contains(@class, 'custom')]")
+    private WebElement nameNewContactSpan;
+
+    @FindBy(xpath = "//div[@class='slds-media__body']//h2[@title='We hit a snag.']")
+    private WebElement errorMessageDiv;
+
+    public ContactPage fillLastNameField(Contact contact) {
         logger.atInfo().log("Fill out new contact first name");
-        new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions
-                .elementToBeClickable(firstNameInput)).sendKeys(contact.getFirstName());
+        Waiters.waitElementToBeClickable(driver, lastNameInput);
+        lastNameInput.sendKeys(contact.getLastName());
         return this;
     }
 
-    @FindBy(xpath = "//label[contains(text(), 'Account Name')]/following-sibling::div//input")
-    private WebElement accountNameInput;
+    public ContactPage fillFirstNameField(Contact contact) {
+        logger.atInfo().log("Fill out new contact first name");
+        Waiters.waitElementToBeClickable(driver, firstNameInput);
+        firstNameInput.sendKeys(contact.getFirstName());
+        return this;
+    }
 
     public ContactPage fillAccountNameField(Account account) {
         logger.atInfo().log("Fill out account name field");
@@ -48,18 +51,14 @@ public class ContactPage extends BasePage {
         return this;
     }
 
-    @FindBy (xpath = "//div[contains(text(), 'Contact')]/parent::h1//div[contains(@class, 'testonly')]//span[contains(@class, 'custom')]")
-    private WebElement nameNewContactSpan;
-
     public String getTextNameNewCreatedContact() {
-        return new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions.visibilityOf(nameNewContactSpan)).getText();
+        Waiters.waitVisibilityOf(driver, nameNewContactSpan);
+        return nameNewContactSpan.getText();
     }
 
-    @FindBy(xpath = "//div[@class='slds-media__body']//h2[@title='We hit a snag.']")
-    private WebElement errorMessageDiv;
-
     public String getErrorMessage() {
-        return new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions.visibilityOf(errorMessageDiv)).getText();
+        Waiters.waitVisibilityOf(driver, errorMessageDiv);
+        return errorMessageDiv.getText();
     }
 
     public ContactPage choseAccount(Account account) {
@@ -74,6 +73,7 @@ public class ContactPage extends BasePage {
     }
 
     public void deleteCreatedContact() {
+        logger.atInfo().log("Delete created contact");
         new DeleteCreatedObjects().deleteObject();
     }
 
@@ -82,14 +82,4 @@ public class ContactPage extends BasePage {
         new SaveButtonForCreatedObjects().clickSaveLeadContactButton();
     }
 
-    /*@FindBy(xpath = "//span[contains(text(), 'Account')]/ancestor::" +
-            "li[contains(@class, 'slds')]//span[contains(@class, 'entity')]//lightning-base-combobox-formatted-text[@title='TMS']")
-    private WebElement accountForNewContactSpan;*/
-
-    /*public ContactPage choseAccountForContact() {
-        logger.atInfo().log("Choose one of all existing accounts");
-        new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions.elementToBeClickable(accountForNewContactSpan));
-        accountForNewContactSpan.click();
-        return this;
-    }*/
 }

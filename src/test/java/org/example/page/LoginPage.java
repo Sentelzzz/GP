@@ -12,15 +12,21 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//input[@name='username']")
     private WebElement usernameFieldInput;
 
+    @FindBy(xpath = "//input[@name='pw']")
+    private WebElement passwordFieldInput;
+
+    @FindBy(xpath = "//input[@name='Login']")
+    private WebElement loginButtonInput;
+
+    @FindBy(xpath = "//div[@id='error']")
+    private WebElement errorMessageDiv;
+
     public LoginPage fillUsernameField(String username) {
         usernameFieldInput.clear();
         usernameFieldInput.sendKeys(username);
         logger.atInfo().log("Enter username information");
         return this;
     }
-
-    @FindBy(xpath = "//input[@name='pw']")
-    private WebElement passwordFieldInput;
 
     public LoginPage fillPasswordField(String password) {
         passwordFieldInput.clear();
@@ -29,16 +35,10 @@ public class LoginPage extends BasePage {
         return this;
     }
 
-    @FindBy(xpath = "//input[@name='Login']")
-    private WebElement loginButtonInput;
-
     public void clickLoginButton() {
         loginButtonInput.click();
         logger.atInfo().log("Click on login button after filling username and password fields");
     }
-
-    @FindBy(xpath = "//div[@id='error']")
-    private WebElement errorMessageDiv;
 
     public String getTextErrorMessage() {
         logger.atInfo().log("Get text of error message");

@@ -4,12 +4,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.example.elements.*;
 import org.example.models.Account;
+import org.example.utils.Waiters;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 import static org.example.utils.StringConstants.*;
 
@@ -20,23 +17,23 @@ public class AccountPage extends BasePage{
     @FindBy(xpath = "//span[contains(text(), 'Account Name')]/ancestor::div[contains(@class, 'uiInput')]//input")
     private WebElement accountNameFieldSpan;
 
-    public AccountPage fillAccountField(Account account) {
-        logger.atInfo().log("Fill out new account name");
-        new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions
-                .elementToBeClickable(accountNameFieldSpan)).sendKeys(account.getAccountName());
-        return this;
-    }
-
     @FindBy (xpath = "//span[contains(text(), 'Account Name')]/parent::div/following-sibling::div//span//slot/lightning-formatted-text")
     private WebElement nameOfAccount;
 
-    public String getTextOfNameOfAccount() {
-        new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions.visibilityOf(nameOfAccount));
-        return nameOfAccount.getText();
-    }
-
     @FindBy(xpath = "//span[contains(text(), 'Review the errors on this page.')]")
     private WebElement errorCreatingMessageSpan;
+
+    public AccountPage fillAccountField(Account account) {
+        logger.atInfo().log("Fill out new account name");
+        Waiters.waitElementToBeClickable(driver, accountNameFieldSpan);
+        accountNameFieldSpan.sendKeys(account.getAccountName());
+        return this;
+    }
+
+    public String getTextOfNameOfAccount() {
+        Waiters.waitVisibilityOf(driver, nameOfAccount);
+        return nameOfAccount.getText();
+    }
 
     public String getTextErrorMessageCreatingAccount() {
         return errorCreatingMessageSpan.getText();
@@ -55,6 +52,7 @@ public class AccountPage extends BasePage{
     }
 
     public void deleteCreatedAccount() {
+        logger.atInfo().log("Delete created account");
         new DeleteCreatedObjects().deleteObject();
     }
 

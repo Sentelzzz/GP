@@ -29,7 +29,7 @@ public class ContactPageService extends LoginPageService {
         contactPage.deleteCreatedContact();
     }
 
-    public void createNewContact() throws InterruptedException {
+    public void createNewContact() {
         login(USERNAME, PASSWORD, LOG_IN_URL).openNextPage(CONTACTS_PAGE);
         contactPage.clickCreateNewAccountButton()
                 .fillFirstNameField(contact)

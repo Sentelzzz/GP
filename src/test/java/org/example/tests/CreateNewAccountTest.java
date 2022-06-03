@@ -1,7 +1,9 @@
 package org.example.tests;
 
 import org.example.service.AccountPageService;
+import org.example.utils.Retry;
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -22,11 +24,11 @@ public class CreateNewAccountTest extends BaseTest {
         Assert.assertEquals(actualNameNewAccount, expectedNameNewAccount, "You didn't create new account!");
     }
 
-    @Test(description = "Creating account without account name")
+    @Test(description = "Creating account without account name", retryAnalyzer = Retry.class)
     public void createIncorrectAccount() {
         accountPageService.createIncorrectAccount();
-        String expectedErrorMessage = accountPageService.getTextErrorMessageCreatingNewAccount();
-        String actualErrorMessage = "Review the errors on this page.";
+        String expectedErrorMessage = "Review the errors on this page.";
+        String actualErrorMessage = accountPageService.getTextErrorMessageCreatingNewAccount();
         Assert.assertEquals(actualErrorMessage, expectedErrorMessage, "You didn't get right error message!");
     }
 

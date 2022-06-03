@@ -2,6 +2,7 @@ package org.example.service;
 
 import org.example.models.Account;
 import org.example.models.Contact;
+import org.example.models.Dashboard;
 import org.example.models.Leads;
 import org.example.page.HomePage;
 import org.example.page.LoginPage;
@@ -9,6 +10,7 @@ import org.example.page.LoginPage;
 public class LoginPageService {
 
     private LoginPage loginPage = new LoginPage();
+
     protected Account account = Account.builder().accountName("TMS")
             .industry("Education")
             .webSite("http://tms-auto.tilda.ws/qa12-onl")
@@ -37,6 +39,10 @@ public class LoginPageService {
             .lastName("")
             .company("TMS")
             .leadStatus("New")
+            .build();
+
+    protected Dashboard dashboard = Dashboard.builder()
+            .dashboardName("Test")
             .build();
 
     public HomePage login(String username, String password, String url) {

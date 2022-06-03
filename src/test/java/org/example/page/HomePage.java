@@ -3,12 +3,9 @@ package org.example.page;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.example.elements.Pages;
+import org.example.utils.Waiters;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 public class HomePage extends BasePage {
 
@@ -18,7 +15,7 @@ public class HomePage extends BasePage {
     private WebElement nameHomePageSpan;
 
     public String getNameHomePage() {
-        new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions.visibilityOf(nameHomePageSpan));
+        Waiters.waitVisibilityOf(driver, nameHomePageSpan);
         logger.atInfo().log("Get name of home page");
         return nameHomePageSpan.getText();
     }

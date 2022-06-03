@@ -1,7 +1,7 @@
 package org.example.elements;
 
 import org.example.page.BasePage;
-import org.example.utils.Waters;
+import org.example.utils.Waiters;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -20,13 +20,13 @@ public class DeleteCreatedObjects extends BasePage {
     private WebElement deleteButton;
 
     public void openCreatedProject() {
-        Waters.waitElementToBeClickable(driver, createdObjectTh);
+        Waiters.waitClickElementToBeClickable(driver, createdObjectTh);
     }
 
     public void deleteObject() {
-        Waters.waitElementToBeClickable(driver, createdObjectTh);
-        Waters.waitElementToBeClickable(driver, dropDownInObjectLi);
-        Waters.waitElementToBeClickable(driver, deleteOptionDiv);
-        Waters.waitElementToBeClickable(driver, deleteButton);
+        Waiters.waitClickElementToBeClickable(driver, createdObjectTh);
+        Waiters.waitClickElementToBeClickable(driver, dropDownInObjectLi);
+        Waiters.waitClickElementToBeClickable(driver, deleteOptionDiv);
+        Waiters.waitClickElementToBeClickable(driver, deleteButton);
     }
 }

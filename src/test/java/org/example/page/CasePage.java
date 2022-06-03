@@ -3,16 +3,10 @@ package org.example.page;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.example.elements.*;
-import org.example.utils.Waters;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.NoSuchElementException;
+import org.example.utils.JavaExecutor;
+import org.example.utils.Waiters;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 public class CasePage extends BasePage {
 
@@ -21,24 +15,23 @@ public class CasePage extends BasePage {
     @FindBy(xpath = "//a[contains(text(), 'Case Details')]")
     private WebElement casePageName;
 
-    public String getTextPageName() {
-        logger.atInfo().log("Get name of created page");
-        new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions.visibilityOf(casePageName));
-        return casePageName.getText();
-    }
-
     @FindBy(xpath = "//span[contains(text(), 'Mark as Current Status')]")
     private WebElement confirmChangingSpan;
 
-    public void confirmNewCaseStatus() {
-        logger.atInfo().log("Confirm new case status");
-        new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions.elementToBeClickable(confirmChangingSpan));
-        JavascriptExecutor executor = (JavascriptExecutor) driver;
-        executor.executeScript("arguments[0].click();", confirmChangingSpan);
-    }
-
     @FindBy(xpath = "//span[contains(text(), 'Status')]//parent::p")
     private WebElement currentStatusSpan;
+
+    public String getTextPageName() {
+        logger.atInfo().log("Get name of created page");
+        Waiters.waitVisibilityOf(driver, casePageName);
+        return casePageName.getText();
+    }
+
+    public void confirmNewCaseStatus() {
+        logger.atInfo().log("Confirm new case status");
+        Waiters.waitElementToBeClickable(driver, confirmChangingSpan);
+        JavaExecutor.javaExecutor(driver, confirmChangingSpan);
+    }
 
     public String getTextCurrentStatus() {
         logger.atInfo().log("Get text current status");
@@ -47,11 +40,7 @@ public class CasePage extends BasePage {
 
     public CasePage clickOnSelect(String status) {
         logger.atInfo().log("Choose dropdown field");
-        try {
-            new DropDown(status).selectCaseDropDown();
-        } catch (NoSuchElementException exception) {
-            System.out.println("You cant use this element!");
-        }
+        new DropDown(status).selectCaseDropDown();
         return this;
     }
 

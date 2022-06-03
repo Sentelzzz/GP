@@ -7,13 +7,9 @@ import org.example.elements.DropDown;
 import org.example.elements.NewObjectButton;
 import org.example.elements.SaveButtonForCreatedObjects;
 import org.example.models.Leads;
-import org.openqa.selenium.JavascriptExecutor;
+import org.example.utils.Waiters;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 public class LeadsPage extends BasePage{
 
@@ -22,48 +18,49 @@ public class LeadsPage extends BasePage{
     @FindBy(xpath = "//label[contains(text(), 'Last Name')]//following-sibling::div//input[@type='text']")
     private WebElement lastNameInputLabel;
 
-    public LeadsPage fillLastNameField(Leads leads) {
-        logger.atInfo().log("Fill out new lead last name");
-        new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions.elementToBeClickable(lastNameInputLabel));
-        lastNameInputLabel.sendKeys(leads.getLastName());
-        return this;
-    }
-
     @FindBy(xpath = "//label[contains(text(), 'Company')]//following-sibling::div//input[@type='text']")
     private WebElement companyInputLabel;
-
-    public LeadsPage fillCompanyField(Leads leads) {
-        logger.atInfo().log("Fill out new lead last name");
-        new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions.elementToBeClickable(companyInputLabel));
-        companyInputLabel.sendKeys(leads.getCompany());
-        return this;
-    }
 
     @FindBy(xpath = "//label[contains(text(),'Lead Status')]//following-sibling::div")
     private WebElement leadStatusDropDownLabel;
 
+    @FindBy(xpath = "//span[contains(text(), 'Name')]//parent::div//following-sibling::div//span//slot[@name='outputField']//lightning-formatted-name")
+    private WebElement nameLeadPageSpan;
+
+    @FindBy(xpath = "//div[@class='slds-media__body']//h2[@title='We hit a snag.']")
+    private WebElement errorMessageDiv;
+
+    public LeadsPage fillLastNameField(Leads leads) {
+        logger.atInfo().log("Fill out new lead last name");
+        Waiters.waitVisibilityOf(driver, lastNameInputLabel);
+        lastNameInputLabel.sendKeys(leads.getLastName());
+        return this;
+    }
+
+    public LeadsPage fillCompanyField(Leads leads) {
+        logger.atInfo().log("Fill out new lead last name");
+        Waiters.waitVisibilityOf(driver, companyInputLabel);
+        companyInputLabel.sendKeys(leads.getCompany());
+        return this;
+    }
+
     public LeadsPage choseLeadStatus(Leads leads) {
         logger.atInfo().log("Chose the lead status");
-        new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions.elementToBeClickable(leadStatusDropDownLabel));
+        Waiters.waitVisibilityOf(driver, leadStatusDropDownLabel);
         leadStatusDropDownLabel.click();
         new DropDown().selectLeadStatus(leads.getLeadStatus());
         return this;
     }
 
-    @FindBy(xpath = "//span[contains(text(), 'Name')]//parent::div//following-sibling::div//span//slot[@name='outputField']//lightning-formatted-name")
-    private WebElement nameLeadPageSpan;
-
     public String getActualTextNameOfLeadPage() {
         logger.atInfo().log("Get name of created lead");
-        new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions.visibilityOf(nameLeadPageSpan));
+        Waiters.waitVisibilityOf(driver, nameLeadPageSpan);
         return nameLeadPageSpan.getText();
     }
 
-    @FindBy(xpath = "//div[@class='slds-media__body']//h2[@title='We hit a snag.']")
-    private WebElement errorMessageDiv;
-
     public String getErrorMessage() {
-        return new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions.visibilityOf(errorMessageDiv)).getText();
+        Waiters.waitVisibilityOf(driver, errorMessageDiv);
+        return errorMessageDiv.getText();
     }
 
     public void deleteCreatedLead() {

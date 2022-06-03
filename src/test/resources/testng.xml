@@ -31,4 +31,9 @@
             <class name="org.example.tests.CreateNewEventTest"/>
         </classes>
     </test>
+    <test name="Create new dashboard">
+        <classes>
+            <class name="org.example.tests.CreateNewDashboardTest"/>
+        </classes>
+    </test>
 </suite>

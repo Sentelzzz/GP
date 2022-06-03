@@ -2,7 +2,6 @@ package org.example.elements;
 
 import org.example.page.BasePage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -40,12 +39,8 @@ public class DropDown extends BasePage {
     }
 
     public void selectCaseDropDown() {
-        try {
-            new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions
+        new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions
                     .visibilityOfElementLocated((By.xpath(String.format(SELECT_CASE_DROP_DOWN, label)))));
-        } catch (TimeoutException e) {
-            System.out.println("You cant use this element!");
-        }
         driver.findElement(By.xpath(String.format(SELECT_CASE_DROP_DOWN, label))).click();
     }
 

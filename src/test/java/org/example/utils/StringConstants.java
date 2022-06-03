@@ -6,7 +6,7 @@ public class StringConstants {
     public static final String LOG_IN_URL = "https://login.salesforce.com/";
 
     //login and password
-    public static final String USERNAME = "davsrd-fyd2@force.com";
+    public static final String USERNAME = "kzwaklna-dujh@force.com";
     public static final String PASSWORD = "TMSonlAQA12Java";
     public static final String INCORRECTPASSWORD = "11111111";
 
@@ -20,6 +20,7 @@ public class StringConstants {
     public static final String CONTACTS_PAGE = "Contacts";
     public static final String LEADS_PAGE = "Leads";
     public static final String CALENDAR_PAGE = "Calendar";
+    public static final String DASHBOARDS = "Dashboards";
 
     //cases dropdown name
     public static final String STATUS = "Status";
