@@ -22,12 +22,4 @@ public class CreateNewLeadTest extends BaseTest {
         String actualNameOfLead = leadsPageService.getActualTextLeadName();
         Assert.assertEquals(actualNameOfLead, expectedNameOfLead, "Name of new lead doesn't correct!");
     }
-
-    @Test(description = "Create new lead, doesn't fill out all necessary fields")
-    public void createNewIncorrectLeadTest() {
-        leadsPageService.createNewIncorrectLead();
-        String actualErrorMessage = leadsPageService.getErrorMessage();
-        String expectedErrorMessage = "We hit a snag.";
-        Assert.assertEquals(actualErrorMessage, expectedErrorMessage, "You didn't get right error message!");
-    }
 }

@@ -17,19 +17,11 @@ public class CreateNewCaseTest extends BaseTest{
         casePageService = new CasePageService();
     }
 
-    @Test(description = "Create new case", priority = 1)
+    @Test(description = "Create new case")
     public void createNewCaseTest() {
         casePageService.createNewCase();
         String expectedPageName = "Case Details";
         String actualPageName = casePageService.getTextPageName();
         Assert.assertEquals(actualPageName, expectedPageName, "You didn't create new case!");
-    }
-
-    @Test(description = "Change current status and confirm it", priority = 2)
-    public void changeCurrentStatusTest() {
-        casePageService.changeCurrentCaseStatus();
-        String expectedStatusName = "Status: " + CLOSED;
-        String actualStatusName = casePageService.getTextCurrentStatus();
-        Assert.assertEquals(actualStatusName, expectedStatusName, "Status wasn't changed!");
     }
 }

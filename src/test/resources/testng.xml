@@ -11,9 +11,19 @@
             <class name="org.example.tests.CreateNewAccountTest"/>
         </classes>
     </test>
+    <test name="Create new incorrect account test">
+        <classes>
+            <class name="org.example.tests.CreateNewIncorrectAccountTest"/>
+        </classes>
+    </test>
     <test name="Create new contact test">
         <classes>
-            <class name="org.example.tests.CreateNewContactTest" />
+            <class name="org.example.tests.CreateNewContactTest"/>
+        </classes>
+    </test>
+    <test name="Create new incorrect contact test">
+        <classes>
+            <class name="org.example.tests.CreateNewIncorrectContactTest"/>
         </classes>
     </test>
     <test name="Create new lead">
@@ -21,9 +31,19 @@
             <class name="org.example.tests.CreateNewLeadTest"/>
         </classes>
     </test>
+    <test name="Create new incorrect lead">
+        <classes>
+            <class name="org.example.tests.CreateNewIncorrectLeadTest"/>
+        </classes>
+    </test>
     <test name="Create new case">
         <classes>
             <class name="org.example.tests.CreateNewCaseTest"/>
+        </classes>
+    </test>
+    <test name="Change case status">
+        <classes>
+            <class name="org.example.tests.ChangeCaseStatusTest"/>
         </classes>
     </test>
     <test name="Create new event">
@@ -36,4 +56,20 @@
             <class name="org.example.tests.CreateNewDashboardTest"/>
         </classes>
     </test>
+    <test name="Delete account">
+        <classes>
+            <class name="org.example.tests.DeleteCreatedAccount"/>
+        </classes>
+    </test>
+    <test name="Delete contact">
+        <classes>
+            <class name="org.example.tests.DeleteCreatedContact"/>
+        </classes>
+    </test>
+    <test name="Delete lead">
+        <classes>
+            <class name="org.example.tests.DeleteCreatedLead"/>
+        </classes>
+    </test>
 </suite>
+

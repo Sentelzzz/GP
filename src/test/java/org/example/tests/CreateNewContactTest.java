@@ -23,11 +23,4 @@ public class CreateNewContactTest extends BaseTest {
         Assert.assertEquals(actualNewContact, expectedNewContact, "New contact wasn't created!");
     }
 
-    @Test(description = "Create new contact, doesn't fill out all necessary fields")
-    public void createNewIncorrectContactTest() {
-        contactPageService.createNewIncorrectContact();
-        String actualErrorMessage = contactPageService.getErrorMessage();
-        String expectedErrorMessage = "We hit a snag.";
-        Assert.assertEquals(actualErrorMessage, expectedErrorMessage, "You didn't get right error message!");
-    }
 }
