@@ -1,6 +1,9 @@
 package org.example.service;
 
 import org.example.page.AccountPage;
+import org.json.simple.parser.ParseException;
+
+import java.io.IOException;
 
 import static org.example.utils.StringConstants.*;
 
@@ -20,8 +23,8 @@ public class AccountPageService extends LoginPageService {
         return accountPage.getTextOfNameOfAccount();
     }
 
-    public void createNewAccount() {
-        login(USERNAME, PASSWORD, LOG_IN_URL).openNextPage(ACCOUNT_PAGE);
+    public void createNewAccount() throws IOException, ParseException {
+        login("userName", "password", LOG_IN_URL).openNextPage(ACCOUNT_PAGE);
         accountPage.clickCreateNewAccountButton()
                 .fillAccountField(account)
                 .fillWebSiteField(account)
@@ -29,13 +32,13 @@ public class AccountPageService extends LoginPageService {
                 .clickSaveButton();
     }
 
-    public void deleteNewAccount() {
-        login(USERNAME, PASSWORD, LOG_IN_URL).openNextPage(ACCOUNT_PAGE);
+    public void deleteNewAccount() throws IOException, ParseException {
+        login("userName", "password", LOG_IN_URL).openNextPage(ACCOUNT_PAGE);
         accountPage.deleteCreatedAccount();
     }
 
-    public void createIncorrectAccount() {
-        login(USERNAME, PASSWORD, LOG_IN_URL).openNextPage(ACCOUNT_PAGE);
+    public void createIncorrectAccount() throws IOException, ParseException {
+        login("userName", "password", LOG_IN_URL).openNextPage(ACCOUNT_PAGE);
         accountPage.clickCreateNewAccountButton()
                 .fillAccountField(incorrectAccount)
                 .fillWebSiteField(incorrectAccount)

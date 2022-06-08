@@ -1,9 +1,13 @@
 package org.example.page;
 
+import org.example.utils.JsonParser;
+import org.json.simple.parser.ParseException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
+
+import java.io.IOException;
 
 public class LoginPage extends BasePage {
 
@@ -21,16 +25,16 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//div[@id='error']")
     private WebElement errorMessageDiv;
 
-    public LoginPage fillUsernameField(String username) {
+    public LoginPage fillUsernameField(String username) throws IOException, ParseException {
         usernameFieldInput.clear();
-        usernameFieldInput.sendKeys(username);
+        usernameFieldInput.sendKeys(JsonParser.parser(username));
         logger.atInfo().log("Enter username information");
         return this;
     }
 
-    public LoginPage fillPasswordField(String password) {
+    public LoginPage fillPasswordField(String password) throws IOException, ParseException {
         passwordFieldInput.clear();
-        passwordFieldInput.sendKeys(password);
+        passwordFieldInput.sendKeys(JsonParser.parser(password));
         logger.atInfo().log("Enter password information");
         return this;
     }

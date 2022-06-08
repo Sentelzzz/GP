@@ -1,6 +1,9 @@
 package org.example.service;
 
 import org.example.page.ContactPage;
+import org.json.simple.parser.ParseException;
+
+import java.io.IOException;
 
 import static org.example.utils.StringConstants.*;
 
@@ -24,13 +27,13 @@ public class ContactPageService extends LoginPageService {
         return contactPage.getTextNameNewCreatedContact();
     }
 
-    public void deleteNewContact() {
-        login(USERNAME, PASSWORD, LOG_IN_URL).openNextPage(CONTACTS_PAGE);
+    public void deleteNewContact() throws IOException, ParseException {
+        login("userName", "password", LOG_IN_URL).openNextPage(CONTACTS_PAGE);
         contactPage.deleteCreatedContact();
     }
 
-    public void createNewContact() {
-        login(USERNAME, PASSWORD, LOG_IN_URL).openNextPage(CONTACTS_PAGE);
+    public void createNewContact() throws IOException, ParseException {
+        login("userName", "password", LOG_IN_URL).openNextPage(CONTACTS_PAGE);
         contactPage.clickCreateNewAccountButton()
                 .fillFirstNameField(contact)
                 .fillLastNameField(contact)
@@ -39,8 +42,8 @@ public class ContactPageService extends LoginPageService {
                 .clickSaveButton();
     }
 
-    public void createNewIncorrectContact() {
-        login(USERNAME, PASSWORD, LOG_IN_URL).openNextPage(CONTACTS_PAGE);
+    public void createNewIncorrectContact() throws IOException, ParseException {
+        login("userName", "password", LOG_IN_URL).openNextPage(CONTACTS_PAGE);
         contactPage.clickCreateNewAccountButton()
                 .fillFirstNameField(incorrectContact)
                 .fillLastNameField(incorrectContact)

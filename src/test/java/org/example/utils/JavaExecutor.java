@@ -7,9 +7,9 @@ import org.openqa.selenium.WebElement;
 
 public class JavaExecutor {
 
-
     public static void javaExecutor(WebDriver driver, WebElement element) {
         JavascriptExecutor executor = (JavascriptExecutor) driver;
         executor.executeScript("arguments[0].click();", element);
     }
+
 }

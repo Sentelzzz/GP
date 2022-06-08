@@ -6,6 +6,10 @@ import org.example.models.Dashboard;
 import org.example.models.Leads;
 import org.example.page.HomePage;
 import org.example.page.LoginPage;
+import org.example.utils.JsonParser;
+import org.json.simple.parser.ParseException;
+
+import java.io.IOException;
 
 public class LoginPageService {
 
@@ -45,7 +49,7 @@ public class LoginPageService {
             .dashboardName("Test")
             .build();
 
-    public HomePage login(String username, String password, String url) {
+    public HomePage login(String username, String password, String url) throws IOException, ParseException {
         loginPage.openPage(url)
                 .fillUsernameField(username)
                 .fillPasswordField(password)

@@ -1,22 +1,25 @@
 package org.example.tests;
 
 import org.example.service.DashboardPageService;
+import org.json.simple.parser.ParseException;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
+
 public class CreateNewDashboardTest extends BaseTest {
 
     private DashboardPageService dashboardPageService;
 
-    @BeforeTest
+    @BeforeClass
     public void setUp() {
         dashboardPageService = new DashboardPageService();
     }
 
     @Test
-    public void createNewDashboardTest() {
+    public void createNewDashboardTest() throws IOException, ParseException {
         dashboardPageService.createNewDashboard();
         String expectedNameNewDashboard = "Edit Dashboard name";
         String actualNameNewDashboard = dashboardPageService.getTextCreatedDashboard();

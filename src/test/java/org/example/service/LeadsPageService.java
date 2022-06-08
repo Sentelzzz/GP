@@ -1,6 +1,9 @@
 package org.example.service;
 
 import org.example.page.LeadsPage;
+import org.json.simple.parser.ParseException;
+
+import java.io.IOException;
 
 import static org.example.utils.StringConstants.*;
 
@@ -20,8 +23,8 @@ public class LeadsPageService extends LoginPageService{
         return leadsPage.getErrorMessage();
     }
 
-    public void createNewLead() {
-        login(USERNAME, PASSWORD, LOG_IN_URL).openNextPage(LEADS_PAGE);
+    public void createNewLead() throws IOException, ParseException {
+        login("userName", "password", LOG_IN_URL).openNextPage(LEADS_PAGE);
         leadsPage.clickCreateNewLeadButton()
                 .fillLastNameField(lead)
                 .fillCompanyField(lead)
@@ -29,8 +32,8 @@ public class LeadsPageService extends LoginPageService{
                 .clickSaveButton();
     }
 
-    public void createNewIncorrectLead() {
-        login(USERNAME, PASSWORD, LOG_IN_URL).openNextPage(LEADS_PAGE);
+    public void createNewIncorrectLead() throws IOException, ParseException {
+        login("userName", "password", LOG_IN_URL).openNextPage(LEADS_PAGE);
         leadsPage.clickCreateNewLeadButton()
                 .fillLastNameField(incorrectLead)
                 .fillCompanyField(incorrectLead)
@@ -38,8 +41,8 @@ public class LeadsPageService extends LoginPageService{
                 .clickSaveButton();
     }
 
-    public void deleteNewLead() {
-        login(USERNAME, PASSWORD, LOG_IN_URL).openNextPage(LEADS_PAGE);
+    public void deleteNewLead() throws IOException, ParseException {
+        login("userName", "password", LOG_IN_URL).openNextPage(LEADS_PAGE);
         leadsPage.deleteCreatedLead();
     }
 
