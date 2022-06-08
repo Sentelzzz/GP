@@ -1,5 +1,7 @@
 package org.example.page;
 
+import io.qameta.allure.Step;
+import org.example.utils.AllureUtils;
 import org.example.utils.JsonParser;
 import org.json.simple.parser.ParseException;
 import org.openqa.selenium.WebElement;
@@ -25,17 +27,21 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//div[@id='error']")
     private WebElement errorMessageDiv;
 
+    @Step("Enter username information")
     public LoginPage fillUsernameField(String username) throws IOException, ParseException {
         usernameFieldInput.clear();
         usernameFieldInput.sendKeys(JsonParser.parser(username));
         logger.atInfo().log("Enter username information");
+        AllureUtils.takeScreenshot(driver);
         return this;
     }
 
+    @Step("Enter password information")
     public LoginPage fillPasswordField(String password) throws IOException, ParseException {
         passwordFieldInput.clear();
         passwordFieldInput.sendKeys(JsonParser.parser(password));
         logger.atInfo().log("Enter password information");
+        AllureUtils.takeScreenshot(driver);
         return this;
     }
 
@@ -49,9 +55,11 @@ public class LoginPage extends BasePage {
         return errorMessageDiv.getText();
     }
 
+    @Step("Open login page")
     public LoginPage openPage(String url) {
         driver.get(url);
         logger.atInfo().log("Take url of start page to driver");
+        AllureUtils.takeScreenshot(driver);
         return this;
     }
 

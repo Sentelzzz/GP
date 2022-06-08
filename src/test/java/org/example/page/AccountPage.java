@@ -1,9 +1,11 @@
 package org.example.page;
 
+import io.qameta.allure.Step;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.example.elements.*;
 import org.example.models.Account;
+import org.example.utils.AllureUtils;
 import org.example.utils.Waiters;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -23,10 +25,12 @@ public class AccountPage extends BasePage{
     @FindBy(xpath = "//span[contains(text(), 'Review the errors on this page.')]")
     private WebElement errorCreatingMessageSpan;
 
+    @Step("Fill out new account name")
     public AccountPage fillAccountField(Account account) {
         logger.atInfo().log("Fill out new account name");
         Waiters.waitElementToBeClickable(driver, accountNameFieldSpan);
         accountNameFieldSpan.sendKeys(account.getAccountName());
+        AllureUtils.takeScreenshot(driver);
         return this;
     }
 
@@ -39,15 +43,19 @@ public class AccountPage extends BasePage{
         return errorCreatingMessageSpan.getText();
     }
 
+    @Step("Fill out new account webSite")
     public AccountPage fillWebSiteField(Account account) {
         logger.atInfo().log("Fill out new account webSite");
         new InputField(WEB_SITE_FIELD).writeText(account.getWebSite());
+        AllureUtils.takeScreenshot(driver);
         return this;
     }
 
+    @Step("Chose new account industry")
     public AccountPage choseIndustryType(Account account) {
         logger.atInfo().log("Chose new account industry");
         new DropDown(INDUSTRY_FIELD).selectOption(account.getIndustry());
+        AllureUtils.takeScreenshot(driver);
         return this;
     }
 
@@ -56,9 +64,11 @@ public class AccountPage extends BasePage{
         new DeleteCreatedObjects().deleteObject();
     }
 
+    @Step("Click on create new account button")
     public AccountPage clickCreateNewAccountButton() {
         logger.atInfo().log("Click on create new account button");
         new NewObjectButton().createNewObject();
+        AllureUtils.takeScreenshot(driver);
         return this;
     }
 
