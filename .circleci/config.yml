@@ -8,7 +8,7 @@ jobs:
     docker:
       - image: circleci/openjdk:17.0.2-jdk-browsers
     working_directory: ~/repo
-    environment:
+    environment: 
     # get from git and get maven dependencies
     steps:
       - checkout
