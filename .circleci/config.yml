@@ -7,7 +7,7 @@ jobs:
   ui-tests:
     docker:
       - image: cimg/openjdk:17.0.3
-      - image: selenium/standalone-chrome:3.11.0
+      - image: selenium/standalone-chrome:3.141.59
     working_directory: ~/repo
     environment:
     # get from git and get maven dependencies
