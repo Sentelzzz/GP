@@ -6,7 +6,7 @@ version: 2
 jobs:
   ui-tests:
     docker:
-      - image: circleci/openjdk:17.0.3-browsers
+      - image: docker pull cimg/openjdk:17.0.3
     steps:
       - checkout
       - restore_cache:
