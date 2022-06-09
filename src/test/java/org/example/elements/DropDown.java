@@ -29,7 +29,7 @@ public class DropDown extends BasePage {
     private static final String SELECT_EVENT_SUBJECT_OPTION = "//span[contains(text(), '%s')]//ancestor::lightning-base-combobox-item";
 
     public void selectOption(String option) {
-        new WebDriverWait(driver, 20).until(ExpectedConditions
+        new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions
                 .visibilityOfElementLocated(By.xpath(String.format(DROP_DOWN_XPATH, label)))).click();
         driver.findElement(By.xpath(String.format(SELECT_OPTION_XPATH, option))).click();
     }
@@ -39,18 +39,18 @@ public class DropDown extends BasePage {
     }
 
     public void selectCaseDropDown() {
-        new WebDriverWait(driver, 20).until(ExpectedConditions
+        new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions
                     .visibilityOfElementLocated((By.xpath(String.format(SELECT_CASE_DROP_DOWN, label)))));
         driver.findElement(By.xpath(String.format(SELECT_CASE_DROP_DOWN, label))).click();
     }
 
     public void selectCaseDropDownOption() {
-        new WebDriverWait(driver, 20).until(ExpectedConditions
+        new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions
                 .elementToBeClickable(driver.findElement(By.xpath(String.format(SELECT_CASE_DROP_DOWN_OPTION, label))))).click();
     }
 
     public void selectEventSubject(String subject) {
-        new WebDriverWait(driver, 20).until(ExpectedConditions
+        new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions
                 .elementToBeClickable(driver.findElement(By.xpath(String.format(SELECT_EVENT_SUBJECT_OPTION, subject))))).click();
     }
 }

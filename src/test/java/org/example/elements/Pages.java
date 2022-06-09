@@ -19,7 +19,7 @@ public class Pages extends BasePage {
     }
 
     public void openNextPage() {
-        new WebDriverWait(driver, 20).until(ExpectedConditions
+        new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions
                 .visibilityOfElementLocated(By.xpath(String.format(PAGES_XPATH, label))));
         JavaExecutor.javaExecutor(driver, driver.findElement(By.xpath(String.format(PAGES_XPATH, label))));
     }
