@@ -17,12 +17,6 @@ jobs:
             - v1-dependencies-{{ checksum "pom.xml" }}
             - v1-dependencies-
       - run: mvn dependency:go-offline
-      - run:
-              name: Download Selenium
-              command: curl -O http://selenium-release.storage.googleapis.com/3.141.59/selenium-server-standalone-3.141.59.jar
-      - run:
-          name: Start Selenium
-          command: java -jar selenium-server-standalone-3.141.59.jar -log test-reports/selenium.log
       - save_cache:
           paths:
             - ~/.m2
