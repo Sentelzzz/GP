@@ -1,34 +1,26 @@
 # Java Maven CircleCI 2.0 configuration file
 #
 # Check https://circleci.com/docs/2.0/language-java/ for more details
-#
+# https://circleci.com/docs/2.0/browser-testing/#selenium
 version: 2
 jobs:
-  build:
+  ui-tests:
     docker:
-      # specify the version you desire here
       - image: cimg/openjdk:17.0.3-browsers
-
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/postgres:9.4
-
     working_directory: ~/repo
-
+    environment:
+    # get from git and get maven dependencies
     steps:
       - checkout
-
-      # Download and cache dependencies
-
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "pom.xml" }}
-            # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
-
       - run: mvn dependency:go-offline
-
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: v1-dependencies-{{ checksum "pom.xml" }}
       - run:
           name: Install latest version of ChromeDriver Sample
           command: |
@@ -50,26 +42,17 @@ jobs:
             sudo apt-get install xvfb
             sudo apt-get -y install imagemagick x11-apps
       - run:
-          name: Running X virtual framebuffer
-          command: Xvfb :0 -ac &
-
+          name: Running tests
+          command: mvn -Dbrowser=chrome -Dsurefire.suiteXmlFiles="src\test\resources\testng.xml" clean test
       - run:
-          name: Run Tests
-          command: |
-            mvn -Dbrowser=chrome -Dsurefire.suiteXmlFiles="src\test\resources\testng.xml" clean test
-      - save_cache:
-          paths:
-            - ~/.m2
-          key: v1-dependencies-{{ checksum "pom.xml" }}
-
-      # run tests!
-      - run: mvn test
-
-      - store_artifacts:
-          path: target/surefire-reports
-          destination: tr1
+          name: Generate allure report
+          command: mvn allure:report
+          when: always
       - store_test_results:
-          path: target/surefire-reports
+          path: target/surefire-reports/junitreports
+          when: always
+      - store_artifacts:
+          path: target/site/allure-maven-plugin/
 workflows:
   version: 2
   commit:
@@ -82,6 +65,6 @@ workflows:
           filters:
             branches:
               only:
-              - master
+                - master
     jobs:
       - ui-tests
