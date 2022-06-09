@@ -6,7 +6,7 @@ version: 2
 jobs:
   ui-tests:
     docker:
-      - image: docker pull cimg/openjdk:17.0.3
+      - image: cimg/openjdk:17.0.3
     steps:
       - checkout
       - restore_cache:
