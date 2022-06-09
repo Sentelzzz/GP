@@ -11,8 +11,6 @@ import java.time.Duration;
 
 public class Waiters {
 
-    /*protected static WebDriver driver = DriverSingleton.getInstance().getDriver();*/
-
     private Waiters() {
     }
 
