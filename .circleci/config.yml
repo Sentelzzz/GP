@@ -6,7 +6,7 @@ version: 2
 jobs:
   ui-tests:
     docker:
-      - image: circleci/openjdk-17-buster-browsers
+      - image: circleci/openjdk-17-buster
     steps:
       - checkout
       - restore_cache:
