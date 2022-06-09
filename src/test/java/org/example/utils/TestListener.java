@@ -12,7 +12,7 @@ import org.testng.ITestResult;
 
 import java.util.concurrent.TimeUnit;
 
-public abstract class TestListener extends BasePage implements ITestListener {
+public class TestListener extends BasePage implements ITestListener {
 
     public void onTestStart(ITestResult iTestResult) {
         System.out.println((String.format("======================================== STARTING TEST %s ========================================", iTestResult.getName())));
