@@ -9,18 +9,45 @@ jobs:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     docker:
-      - image: cimg/base:stable
+      - image: cimg/openjdk:17.0.3-browsers
+    working_directory: ~/repo
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "pom.xml" }}
+            - v1-dependencies-
+      - run: mvn dependency:go-offline
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: v1-dependencies-{{ checksum "pom.xml" }}
       - run:
-          name: "Say hello"
-          command: "echo Hello, World!"
-
-# Invoke jobs via workflows
-# See: https://circleci.com/docs/2.0/configuration-reference/#workflows
+          name: "Run"
+          command: mvn -Dbrowser=chrome -Dsurefire.suiteXmlFiles=src/test/resources/testng.xml clean test
+    - run:
+        name: Generate allure report
+        command: mvn allure:report
+        when: always
+          - store_test_results:
+              path: target/surefire-reports/junitreports
+              when: always
+          - store_artifacts:
+              path: target/site/allure-maven-plugin/
 workflows:
-  say-hello-workflow:
+  version: 2
+  commit:
     jobs:
-      - say-hello
+      - ui-tests
+  periodical:
+    triggers:
+      - schedule:
+          cron: "1 4,8,12 * * *"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - ui-tests
