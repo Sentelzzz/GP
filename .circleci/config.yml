@@ -24,7 +24,7 @@ jobs:
 
       - run:
           name: Running tests
-          command: mvn -Dbrowser=chrome -Dsurefire.suiteXmlFiles=src\test\resources\testng.xml clean test
+          command: mvn -Dbrowser=chrome -Dsurefire.suiteXmlFiles=src/test/resources/testng.xml clean test
       - run:
           name: Generate allure report
           command: mvn allure:report
