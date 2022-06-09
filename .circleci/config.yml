@@ -2,15 +2,11 @@
 #
 # Check https://circleci.com/docs/2.0/language-java/ for more details
 # https://circleci.com/docs/2.0/browser-testing/#selenium
-version: 2.1
+version: 2
 jobs:
   ui-tests:
     docker:
-      - image: cimg/openjdk:17.0.3
-      - image: cimg/base:2022.06-22.04
-    working_directory: ~/repo
-    environment:
-    # get from git and get maven dependencies
+      - image: circleci/openjdk:17.0.3-browsers
     steps:
       - checkout
       - restore_cache:
