@@ -10,7 +10,7 @@ import static org.example.utils.StringConstants.*;
 
 public class CalendarPageService extends LoginPageService{
 
-    private CalendarPage calendarPage = new CalendarPage();
+    private final CalendarPage calendarPage = new CalendarPage();
 
     public String getTextCreatedEvent() {
         return calendarPage.getTextCreatedEvent();

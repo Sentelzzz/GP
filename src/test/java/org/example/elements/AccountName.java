@@ -9,7 +9,7 @@ public class AccountName extends BasePage {
     private final static String ACCOUNT_NAME_XPATH = "//span[contains(text(), 'Account')]/ancestor::" +
             "li[contains(@class, 'slds')]//span[contains(@class, 'entity')]//lightning-base-combobox-formatted-text[@title='%s']";
 
-    private String label;
+    private final String label;
 
     public AccountName(String label) {
         this.label = label;

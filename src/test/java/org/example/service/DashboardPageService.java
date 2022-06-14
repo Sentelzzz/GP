@@ -9,7 +9,7 @@ import static org.example.utils.StringConstants.*;
 
 public class DashboardPageService extends LoginPageService {
 
-    private DashboardPage dashboardPage = new DashboardPage();
+    private final DashboardPage dashboardPage = new DashboardPage();
 
     public String getTextCreatedDashboard() {
         return dashboardPage.getTextCreatedDashboard();

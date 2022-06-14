@@ -4,12 +4,9 @@ import org.example.service.CasePageService;
 import org.json.simple.parser.ParseException;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
-
-import static org.example.utils.StringConstants.CLOSED;
 
 public class CreateNewCaseTest extends BaseTest{
 

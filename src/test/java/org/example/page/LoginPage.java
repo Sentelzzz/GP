@@ -29,25 +29,25 @@ public class LoginPage extends BasePage {
 
     @Step("Enter username information")
     public LoginPage fillUsernameField(String username) throws IOException, ParseException {
+        logger.atInfo().log("Enter username information");
         usernameFieldInput.clear();
         usernameFieldInput.sendKeys(JsonParser.parser(username));
-        logger.atInfo().log("Enter username information");
         AllureUtils.takeScreenshot(driver);
         return this;
     }
 
     @Step("Enter password information")
     public LoginPage fillPasswordField(String password) throws IOException, ParseException {
+        logger.atInfo().log("Enter password information");
         passwordFieldInput.clear();
         passwordFieldInput.sendKeys(JsonParser.parser(password));
-        logger.atInfo().log("Enter password information");
         AllureUtils.takeScreenshot(driver);
         return this;
     }
 
     public void clickLoginButton() {
-        loginButtonInput.click();
         logger.atInfo().log("Click on login button after filling username and password fields");
+        loginButtonInput.click();
     }
 
     public String getTextErrorMessage() {
@@ -57,8 +57,8 @@ public class LoginPage extends BasePage {
 
     @Step("Open login page")
     public LoginPage openPage(String url) {
-        driver.get(url);
         logger.atInfo().log("Take url of start page to driver");
+        driver.get(url);
         AllureUtils.takeScreenshot(driver);
         return this;
     }

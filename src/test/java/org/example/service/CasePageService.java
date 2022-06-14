@@ -9,7 +9,7 @@ import static org.example.utils.StringConstants.*;
 
 public class CasePageService extends LoginPageService{
 
-    private CasePage casePage = new CasePage();
+    private final CasePage casePage = new CasePage();
 
     public String getTextPageName() {
         return casePage.getTextPageName();
@@ -17,16 +17,6 @@ public class CasePageService extends LoginPageService{
 
     public String getTextCurrentStatus() {
         return casePage.getTextCurrentStatus();
-    }
-
-    public void createNewCaseBug() throws IOException, ParseException {
-        login("userName", "password", LOG_IN_URL).openNextPage(CASE_PAGE);
-        casePage.clickCreateNewCaseButton()
-                .clickOnSelect(CASE_ORIGIN)
-                .choseCaseOption(CASE_ORIGIN_OPTION)
-                .clickOnSelect(STATUS)
-                .choseCaseOption(STATUS_OPTION)
-                .clickSaveButton();
     }
 
     public void createNewCase() throws IOException, ParseException {

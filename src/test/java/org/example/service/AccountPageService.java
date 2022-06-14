@@ -9,7 +9,7 @@ import static org.example.utils.StringConstants.*;
 
 public class AccountPageService extends LoginPageService {
 
-    private AccountPage accountPage = new AccountPage();
+    private final AccountPage accountPage = new AccountPage();
 
     public String getAccountName() {
         return account.getAccountName();

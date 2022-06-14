@@ -10,12 +10,15 @@ import java.io.IOException;
 
 public class JsonParser {
 
+    private JsonParser(){
+    }
+
     public static String parser(String label) throws IOException, ParseException {
 
         JSONParser parser = new JSONParser();
         String result;
 
-        FileReader reader = new FileReader("C:\\Users\\User\\IdeaProjects\\Salesforce\\GP\\src\\test\\resources\\test.json");
+        FileReader reader = new FileReader("src/test/resources/test.json");
         JSONObject jsonObject = (JSONObject) parser.parse(reader);
         result = (String) jsonObject.get(label);
 

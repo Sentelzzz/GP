@@ -12,7 +12,7 @@ import java.io.IOException;
 
 public class LoginPageService {
 
-    private LoginPage loginPage = new LoginPage();
+    private final LoginPage loginPage = new LoginPage();
 
     protected Account account = Account.builder().accountName("TMS")
             .industry("Education")

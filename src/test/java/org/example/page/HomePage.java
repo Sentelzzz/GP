@@ -15,8 +15,8 @@ public class HomePage extends BasePage {
     private WebElement nameHomePageSpan;
 
     public String getNameHomePage() {
-        Waiters.waitVisibilityOf(driver, nameHomePageSpan);
         logger.atInfo().log("Get name of home page");
+        Waiters.waitVisibilityOf(driver, nameHomePageSpan);
         return nameHomePageSpan.getText();
     }
 

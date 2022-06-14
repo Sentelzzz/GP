@@ -9,7 +9,7 @@ import static org.example.utils.StringConstants.*;
 
 public class ContactPageService extends LoginPageService {
 
-    private ContactPage contactPage = new ContactPage();
+    private final ContactPage contactPage = new ContactPage();
 
     public String getErrorMessage() {
         return contactPage.getErrorMessage();

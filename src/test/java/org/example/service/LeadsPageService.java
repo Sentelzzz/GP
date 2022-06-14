@@ -9,7 +9,7 @@ import static org.example.utils.StringConstants.*;
 
 public class LeadsPageService extends LoginPageService{
 
-    private LeadsPage leadsPage = new LeadsPage();
+    private final LeadsPage leadsPage = new LeadsPage();
 
     public String getTextLeadName() {
         return lead.getLastName();

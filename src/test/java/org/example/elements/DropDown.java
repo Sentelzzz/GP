@@ -9,15 +9,6 @@ import java.time.Duration;
 
 public class DropDown extends BasePage {
 
-    private String label;
-
-    public DropDown(String label) {
-        this.label = label;
-    }
-
-    public DropDown() {
-    }
-
     private static final String DROP_DOWN_XPATH = "//*[contains(text(),'%s')]/ancestor::div[contains(@class,'uiInput')]//a";
     private static final String SELECT_OPTION_XPATH = "//*[@class='select-options']/descendant::a[contains(text(),'%s')]";
 
@@ -27,6 +18,15 @@ public class DropDown extends BasePage {
     private static final String SELECT_CASE_DROP_DOWN_OPTION = "//div[@role='menu']/*//a[contains(text(), '%s')]";
 
     private static final String SELECT_EVENT_SUBJECT_OPTION = "//span[contains(text(), '%s')]//ancestor::lightning-base-combobox-item";
+
+    private String label;
+
+    public DropDown(String label) {
+        this.label = label;
+    }
+
+    public DropDown() {
+    }
 
     public void selectOption(String option) {
         new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions
